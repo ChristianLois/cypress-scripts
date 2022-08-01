@@ -1,0 +1,8 @@
+{
+    "uid": "mifos",
+    "pwd": "password",
+    "authentication": {
+        "uid": "mifos",
+        "pwd": "password"
+    }
+}

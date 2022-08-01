@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... }
 
+//import { faker } from '@faker-js/faker';
+
 Cypress.Commands.add('initPage', ()=>{
     cy.visit('/');
 });
@@ -54,21 +56,36 @@ Cypress.Commands.add('deleteClient', (fullName)=>{
 })
 
 Cypress.Commands.add('createClient', (firstName, lastName) => {
-    cy.get('input#firstname').type(firstName);
-    cy.get('input#lastname').type(lastName);
-    cy.get('#save').click();
+    cy.get('input#firstname').type(firstName)
+    cy.get('input#lastname').type(lastName)
+    cy.get('#save').click()
+})
+
+// Author: Erru
+Cypress.Commands.add('optionalDetails', (firstName, lastName, middleName, mobileNo, birthDate) => {
+    cy.get('input#firstname').type(firstName)
+    cy.get('#middlename').type(middleName)
+    cy.get('input#lastname').type(lastName)
+    cy.get('#mobileNo').type(mobileNo)
+    cy.get('#dateofbirth').type(birthDate)
+    cy.get('#save').click()
 })
 
 Cypress.Commands.add('generateRandomClientData', () => {
-    const details = {
-        firstName : faker.name.firstName(),
+    let firstname = faker.name.firstName()
+    let lastname = faker.name.lastName()
+    let fullname = firstname.concat(" ", lastname);
+
+    const clientDetails = {
+        firstName : firstname,
         middleName : faker.name.lastName(),
-        lastName : faker.name.lastName(),
+        lastName : lastname,
+        fullName: fullname,
         birthdate : String(faker.date.birthdate()),
         mobileNo : faker.phone.number('09#########'),
+        randInteger : faker.random.numeric(5)
     }
-
-    cy.wrap(details).as('details');
+    return clientDetails
 })
 
 // Author: Erru
