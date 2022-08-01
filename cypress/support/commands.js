@@ -70,3 +70,10 @@ Cypress.Commands.add('generateRandomClientData', () => {
 
     cy.wrap(details).as('details');
 })
+
+// Author: Erru
+Cypress.Commands.add('navigateToCreateClient', () => {
+    cy.get('[is-open="li.client.status.isopen"] > .dropdown-toggle').trigger('mouseover')
+    cy.get('#swatch-menu').contains('Clients').click()
+    cy.get('.col-sm-4 > [href="#/createclient"]').click()
+})
