@@ -70,3 +70,36 @@ Cypress.Commands.add('generateRandomClientData', () => {
 
     cy.wrap(details).as('details');
 })
+
+Cypress.Commands.add('client_dropdown', (selection) => {
+    cy.get('a').contains('Clients').trigger('mouseover');
+    cy.get('#swatch-menu > li:nth-child('+selection+') > a').click()
+})
+
+
+Cypress.Commands.add('create_valid_client', (firstName, lastName) => {
+    cy.client_dropdown('1')
+    cy.get('.col-sm-4 > [href="#/createclient"]').click()
+    cy.get('#firstname').type(firstName)
+    cy.get('#lastname').type(lastName)
+    cy.get('#save').click()
+    cy.get('.client-title > strong.ng-binding').contains(firstName + " " + lastName)
+})
+
+
+Cypress.Commands.add('edit_client', (type, firstName, lastName) => {
+    if (type == 'valid'){
+        cy.get('[href^="#/editclient"]').click()
+        cy.get('#firstname').clear().type(firstName)
+        cy.get('#lastname').clear().type(lastName)
+        cy.get('#save').click()
+    }
+
+    else if (type == 'blank'){
+        cy.get('[href^="#/editclient"]').click()
+        cy.get('#firstname').clear()
+        cy.get('#lastname').clear()
+        cy.get('#save').click()
+    }
+    
+})
