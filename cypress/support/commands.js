@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... }
 
+//import { faker } from '@faker-js/faker';
+
 Cypress.Commands.add('initPage', ()=>{
     cy.visit('/');
 });
@@ -54,39 +56,46 @@ Cypress.Commands.add('deleteClient', (fullName)=>{
 })
 
 Cypress.Commands.add('createClient', (firstName, lastName) => {
-    cy.get('input#firstname').type(firstName);
-    cy.get('input#lastname').type(lastName);
-    cy.get('#save').click();
+    cy.get('input#firstname').type(firstName)
+    cy.get('input#lastname').type(lastName)
+    cy.get('#save').click()
+})
+
+// Author: Erru
+Cypress.Commands.add('optionalDetails', (firstName, lastName, middleName, mobileNo, birthDate) => {
+    cy.get('input#firstname').type(firstName)
+    cy.get('#middlename').type(middleName)
+    cy.get('input#lastname').type(lastName)
+    cy.get('#mobileNo').type(mobileNo)
+    cy.get('#dateofbirth').type(birthDate)
+    cy.get('#save').click()
 })
 
 Cypress.Commands.add('generateRandomClientData', () => {
-    const details = {
-        firstName : faker.name.firstName(),
+    let firstname = faker.name.firstName()
+    let lastname = faker.name.lastName()
+    let fullname = firstname.concat(" ", lastname);
+
+    const clientDetails = {
+        firstName : firstname,
         middleName : faker.name.lastName(),
-        lastName : faker.name.lastName(),
+        lastName : lastname,
+        fullName: fullname,
         birthdate : String(faker.date.birthdate()),
         mobileNo : faker.phone.number('09#########'),
+        randInteger : faker.random.numeric(5)
     }
-
-    cy.wrap(details).as('details');
+    return clientDetails
 })
 
-Cypress.Commands.add('client_dropdown', (selection) => {
-    cy.get('a').contains('Clients').trigger('mouseover');
-    cy.get('#swatch-menu > li:nth-child('+selection+') > a').click()
-})
-
-
-Cypress.Commands.add('create_valid_client', (firstName, lastName) => {
-    cy.client_dropdown('1')
+// Author: Erru
+Cypress.Commands.add('navigateToCreateClient', () => {
+    cy.get('[is-open="li.client.status.isopen"] > .dropdown-toggle').trigger('mouseover')
+    cy.get('#swatch-menu').contains('Clients').click()
     cy.get('.col-sm-4 > [href="#/createclient"]').click()
-    cy.get('#firstname').type(firstName)
-    cy.get('#lastname').type(lastName)
-    cy.get('#save').click()
-    cy.get('.client-title > strong.ng-binding').contains(firstName + " " + lastName)
 })
 
-
+// Author: Mark Anthony
 Cypress.Commands.add('edit_client', (type, firstName, lastName) => {
     if (type == 'valid'){
         cy.get('[href^="#/editclient"]').click()
@@ -101,5 +110,4 @@ Cypress.Commands.add('edit_client', (type, firstName, lastName) => {
         cy.get('#lastname').clear()
         cy.get('#save').click()
     }
-    
 })

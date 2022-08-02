@@ -1,6 +1,7 @@
+// Author: Mark Anthony
+
 import { edittedFirstName } from '../../common.cy'
 import { edittedLastName } from '../../common.cy'
-
 
 describe('Edit Client Test Case', () => {
 
@@ -12,7 +13,9 @@ describe('Edit Client Test Case', () => {
     it('Edit Client with valid Data', {tags: ['regression', 'happy_path']}, () => {
       cy.fixture('example').then((data) => {
         //Create New Client
-        cy.create_valid_client(data.firstName,data.lastName)
+        cy.navigateToClients()
+        cy.get('.col-sm-4 > [href="#/createclient"]').click()
+        cy.createClient(data.firstName,data.lastName)
         //Edit Client
         cy.edit_client('valid',edittedFirstName,edittedLastName)
         //Assertion
@@ -30,9 +33,10 @@ describe('Edit Client Test Case', () => {
 
     it('Edit Client with blank names', {tags: ['regression', 'negative_path']}, () => {
       cy.fixture('example').then((data) => {
-      
         //Create New Client
-        cy.create_valid_client(data.firstName,data.lastName)
+        cy.navigateToClients()
+        cy.get('.col-sm-4 > [href="#/createclient"]').click()
+        cy.createClient(data.firstName,data.lastName)
         //Edit Client
         cy.edit_client('blank','','')
         //Assertion
