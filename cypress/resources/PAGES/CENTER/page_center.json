@@ -1,0 +1,13 @@
+{
+  "CREATE_CENTER": {
+    "HEADER_TEXT": ".paddedleft strong",
+    "TEXTFIELD_CENTER_NAME": "#name",
+    "SUBMIT_BTN": "#save"
+  },
+
+  "DELETE_CENTER": {
+    "DROPDOWN_BTN": "span.btn-group.dropdown > .btn.btn-primary",
+    "DELETE_BTN": ".lli.ng-binding,[has-permission='DELETE_CENTER'",
+    "CONFIRM_BTN": ".modal-body > .btn-primary"
+  }
+}
