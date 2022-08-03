@@ -11,6 +11,9 @@ let randFirstName = faker.name.firstName();
 let randLastName = faker.name.lastName();
 let fullname = randFirstName.concat(" ", randLastName);
 
+// For the Create Center
+export const centerName = faker.name.lastName();
+
 export var clientDetails = {
   firstName : randFirstName,
   middleName : faker.name.lastName(),
