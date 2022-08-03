@@ -1,0 +1,17 @@
+{
+    "DROPDOWN_CLIENTS" : {
+        "ELEMENT_A_TAG": "a",
+        "TEXT_CLIENTS": "Clients"
+    },
+    "DROPDOWN_CENTER" :{
+        "ELEMENT_SPAN_TAG" : "span",
+        "TEXT_CENTER" : "Center"
+    },
+    "DROPDOWN_GROUP" :{
+        "ELEMENT_SPAN_TAG" : "span",
+        "TEXT_GROUP" : "Group"
+    },
+    "BUTTON_CLIENTS" : "[href=\"#/clients\"]",
+    "DROPDOWN_MIFOS" : "#user-dropdown",
+    "BUTTON_LOGOUT" : "#logout" 
+}

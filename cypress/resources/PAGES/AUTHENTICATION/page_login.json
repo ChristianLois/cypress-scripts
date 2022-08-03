@@ -1,0 +1,6 @@
+{
+    "TEXTFIELD_USERNAME" : "#uid",
+    "TEXTFIELD_PASSWORD" : "#pwd",
+    "TEXT_SIGN_IN" : "Sign In",
+    "TEXT_INVALID_LOGIN" : "div[ng-show*=\"Failed\"]"  
+}
