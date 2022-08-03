@@ -1,0 +1,9 @@
+{
+  "VALID_CENTER_CREATION": {
+    "PATH_URL": "/#/viewcenter/",
+    "HEADER_TEXT": ".paddedleft strong"
+  },
+  "INVALID_CENTER_CREATION": {
+    "PATH_URL": "/#/createcenter"
+  }
+}
