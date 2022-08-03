@@ -1,20 +1,6 @@
 // Author: Erru
 
-import { faker } from '@faker-js/faker';
-
-let randFirstName = faker.name.firstName();
-let randLastName = faker.name.lastName();
-let fullName = randFirstName.concat(" ", randLastName);
-
-var clientDetails = {
-  firstName : randFirstName,
-  middleName : faker.name.lastName(),
-  lastName : randLastName,
-  birthDate : String(faker.date.birthdate()),
-  mobileNo : faker.phone.number('09#########'),
-  randInteger : faker.random.numeric(5),
-  maxWords: faker.lorem.sentence(257)
-}
+import { clientDetails } from '../../common.cy'
 
 // Create Client Test Suite
 describe('Create Client', function () {
@@ -30,19 +16,19 @@ describe('Create Client', function () {
 
   // Teardown
   afterEach(function () {
-    cy.deleteClient(fullName)
+    cy.deleteClient(clientDetails.fullName)
   })
 
   it('Creates Client With Valid Required Field', function () {
     cy.createClient(clientDetails.firstName, clientDetails.lastName)
-    cy.get('.client-title > strong.ng-binding').should('include.text', fullName)
+    cy.get('.client-title > strong.ng-binding').should('include.text', clientDetails.fullName)
     cy.url().should('include', '/viewclient')
   })
 
   it('Creates Client Optional Data', function () {
     cy.optionalDetails(clientDetails.firstName, clientDetails.middleName, clientDetails.lastName, 
                        clientDetails.mobileNo, clientDetails.birthDate)
-    cy.get('.client-title > strong.ng-binding').should('include.text', fullName)
+    cy.get('.client-title > strong.ng-binding').should('include.text', clientDetails.fullName)
     cy.url().should('include', '/viewclient')
   })
 })
@@ -70,7 +56,7 @@ describe('Negative Path of Create Client', function () {
   })
 
   it('Creates Client Blank Credentials', function () {
-    cy.createClient(this.clients.invalid.blank, this.clients.invalid.blank)
+    cy.createClient(" ", " ")
     cy.url().should('include', '/createclient')
     cy.get(':nth-child(3) > div.ng-scope > .form-group > div.col-sm-2')
       .should('include.text', 'Required Field')
