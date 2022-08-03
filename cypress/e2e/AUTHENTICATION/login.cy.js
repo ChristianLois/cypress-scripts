@@ -1,45 +1,50 @@
+import PAGE_HOME from '../../resources/PAGES/HOME/page_home.json';
+import PAGE_LOGIN from '../../resources/PAGES/AUTHENTICATION/page_login.json';
+import EXPECTED_LOGIN from '../../data/EXPECTED/AUTHENTICATION/expected_login.json';
+import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json';
+
 describe('Login', () => {
   beforeEach(()=>{
     cy.initPage();
-  })
+  });
   it('Logs in with valid credentials', () => {
 
-    cy.login('mifos','password');
+    cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD);
 
-    cy.url().should('include', '/home');
-    cy.get('h3 strong').should('contain.text', 'Welcome, mifos');
+    cy.url().should('include', EXPECTED_LOGIN.VALID.PATH_URL);
+    cy.get(PAGE_HOME.TEXT_WELCOME).should('contain.text', EXPECTED_LOGIN.VALID.TEXT_WELCOME);
   });
 
   it('Logs in with blank username', () => {
 
-    cy.login(' ','password');
+    cy.login(' ',INPUT_LOGIN.VALID.PASSWORD);
 
-    cy.url().should('not.include', '/home');
-    cy.get('div[ng-show*="Failed"]').should('be.visible');
+    cy.url().should('not.include', EXPECTED_LOGIN.VALID.PATH_URL);
+    cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
   it('Logs in with invalid username', () => {
 
-    cy.login('mifoss','password');
+    cy.login(INPUT_LOGIN.INVALID.USERNAME,INPUT_LOGIN.VALID.PASSWORD);
 
-    cy.url().should('not.include', '/home');
-    cy.get('div[ng-show*="Failed"]').should('be.visible');
+    cy.url().should('not.include', EXPECTED_LOGIN.VALID.PATH_URL);
+    cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
   it('Logs in with blank password', () => {
 
-    cy.login('mifos',' ');
+    cy.login(INPUT_LOGIN.VALID.USERNAME,' ');
 
-    cy.url().should('not.include', '/home');
-    cy.get('div[ng-show*="Failed"]').should('be.visible');
+    cy.url().should('not.include', EXPECTED_LOGIN.VALID.PATH_URL);
+    cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
   it('Logs in with invalid password', () => {
 
-    cy.login('mifos','wrongPass');
+    cy.login(INPUT_LOGIN.VALID.USERNAME,INPUT_LOGIN.INVALID.PASSWORD);
 
-    cy.url().should('not.include', '/home');
-    cy.get('div[ng-show*="Failed"]').should('be.visible');
+    cy.url().should('not.include', EXPECTED_LOGIN.VALID.PATH_URL);
+    cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
 })
