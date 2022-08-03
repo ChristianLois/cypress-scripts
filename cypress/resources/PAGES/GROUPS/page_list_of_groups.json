@@ -1,0 +1,12 @@
+{
+    "BTN_CREATE_GROUP": "div.toolbar a[href='#/creategroup']",
+    "MODAL_CREATE_GROUP": {
+        "TEXTFIELD_NAME": "#name",
+        "DROPDOWN_OFFICE": "div#officeId_chosen span",
+        "TEXTFIELD_OFFICE": "div#officeId_chosen input",
+        "BTN_SAVE": "#save"
+    },
+    "TEXTFIELD_MIDDLE_SEARCH_GROUP": "input[placeholder='Find by name/externalId']",
+    "BTN_SEARCH": "span.fa-search",
+    "FIRST_GROUP_IN_LIST": "tbody > tr:nth-of-type(1) > td:nth-of-type(1)"
+}

@@ -1,0 +1,7 @@
+{
+    "DROPDOWN_MORE": "span.dropdown",
+    "SUBMENU_DELETE": "a[data-ng-click='deleteGroup()']",
+    "MODAL_DELETE_GROUP": {
+        "BTN_DELETE": "button[ng-click='delete()']"
+    }
+}

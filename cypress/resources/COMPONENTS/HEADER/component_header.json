@@ -12,6 +12,7 @@
         "TEXT_GROUP" : "Group"
     },
     "BUTTON_CLIENTS" : "[href=\"#/clients\"]",
+    "BUTTON_GROUPS" : "a[href='#/groups']",
     "DROPDOWN_MIFOS" : "#user-dropdown",
     "BUTTON_LOGOUT" : "#logout" 
 }

@@ -94,3 +94,5 @@ Cypress.Commands.add('edit_client', (type, firstName, lastName) => {
         cy.get('#save').click()
     }
 })
+
+//Author: Vince 
