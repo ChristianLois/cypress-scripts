@@ -1,0 +1,31 @@
+{
+    "INVALID" : {
+        "FIRSTNAME_ERROR" : ":nth-child(3) > div.ng-scope > .form-group > div.col-sm-2",
+        "MIDDLENAME_ERROR" : ":nth-child(4) > div.ng-scope > .form-group > div.col-sm-2",
+        "LASTNAME_ERROR" : ":nth-child(5) > div.ng-scope > .form-group > div.col-sm-2",
+        "MOBILENO_ERROR" : ":nth-child(7) > div.col-sm-2 > span > .required",
+        "ERRORS" : {
+            "PAST_ACTIVATION_DATE" : "[ng-repeat='errorArray in errorDetails'] > .ng-scope > .ng-binding"
+        }
+    },
+    "FORM" : {
+        "FIRSTNAME_INPUT" : "#firstname",
+        "MIDDLENAME_INPUT" : "#middlename",
+        "LASTNAME_INPUT" : "#lastname",
+        "MOBILENO_INPUT" : "#mobileNo",
+        "BIRTHDATE_INPUT" : "#dateofbirth",
+        "ACTIVE_CHECKBOX" : "#activeCheckbox",
+        "ACTIVATION_DATE" : "#activationDate",
+        "SUBMIT_BTN" : "#save"
+    },
+    "EXPECTED" : {
+        "REQUIRED_FIELD" : "Required Field",
+        "INVALID_MESSAGE" : "Name cannot start with special character or number",
+        "NUMERIC_MESSAGE" : "Must be numeric",
+        "ACTIVATION_DATE_MESSAGE" : "Submitted on date cannot be after the activation date",
+        "URLS" : {
+            "CREATE_CLIENT" : "/createclient",
+            "VIEW_CLIENT" : "/viewclient"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "TITLE_NAME" : ".client-title > strong.ng-binding",
+    "GENERAL_BTN" : ".active > .nav-link",
+    "EDIT_BTN" : "a.btn.btn-primary.btn-offset.ng-binding.ng-scope",
+    "EDIT_TITLE" : "legend.ng-binding",
+    "DELETE_BTN" : "[data-ng-click='deleteClient()']",
+    "DELETE_MODAL" : {
+        "MODAL" : ".modal",
+        "CONFIRM_BTN" : ".modal-body > .btn-primary"
+    }
+}

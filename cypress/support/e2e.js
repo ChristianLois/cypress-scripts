@@ -18,6 +18,7 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+require('cypress-grep')()
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from failing the test
