@@ -83,12 +83,12 @@ describe('Create Client', { tags : '@client' } , function () {
     })
 
     it('Creates Client Past Activation Date', function () {
-      cy.get('#firstname').type(clientDetails.firstName, {delay: 0})
-      cy.get('#lastname').type(clientDetails.lastName, {delay: 0})
+      cy.get(this.createClient.FORM.FIRSTNAME_INPUT).type(clientDetails.firstName, {delay: 0})
+      cy.get(this.createClient.FORM.LASTNAME_INPUT).type(clientDetails.lastName, {delay: 0})
       cy.get(this.createClient.FORM.ACTIVE_CHECKBOX).check()
       cy.get(this.createClient.FORM.ACTIVATION_DATE).clear()
         .type(clientDetails.pastActivationDate)
-      cy.get('#save').click()
+      cy.get(this.createClient.FORM.SUBMIT_BTN).click()
       cy.get(this.createClient.INVALID.ERRORS.PAST_ACTIVATION_DATE)
         .should('include.text', this.createClient.EXPECTED.ACTIVATION_DATE_MESSAGE)
     })
