@@ -41,8 +41,8 @@ Cypress.Commands.add('login', (username,password)=>{
 });
 
 Cypress.Commands.add('navigateToClients', ()=> {
-    cy.get('a').contains('Clients').trigger('mouseover');
-    cy.get('[href="#/clients"]').click();
+    cy.get('[is-open="li.client.status.isopen"] > .dropdown-toggle').trigger('mouseover')
+    cy.get('#swatch-menu').contains('Clients').click()
 })
 
 Cypress.Commands.add('deleteClient', (fullName)=>{
@@ -50,7 +50,7 @@ Cypress.Commands.add('deleteClient', (fullName)=>{
     cy.get('input[placeholder*="name/mobile"]').type(fullName);
     cy.get('span.fa-search').click();
     cy.wait(1000);
-    cy.get('td[data-ng-click="routeTo(client.id)"]').contains(fullName).click();
+    cy.get('tbody > :nth-child(1) > :nth-child(1)').contains(fullName).click();
     cy.get('button').contains('Delete').click();
     cy.get('button').contains('Confirm').click();
 })

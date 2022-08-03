@@ -17,15 +17,5 @@
         "ACTIVE_CHECKBOX" : "#activeCheckbox",
         "ACTIVATION_DATE" : "#activationDate",
         "SUBMIT_BTN" : "#save"
-    },
-    "EXPECTED" : {
-        "REQUIRED_FIELD" : "Required Field",
-        "INVALID_MESSAGE" : "Name cannot start with special character or number",
-        "NUMERIC_MESSAGE" : "Must be numeric",
-        "ACTIVATION_DATE_MESSAGE" : "Submitted on date cannot be after the activation date",
-        "URLS" : {
-            "CREATE_CLIENT" : "/createclient",
-            "VIEW_CLIENT" : "/viewclient"
-        }
     }
 }
