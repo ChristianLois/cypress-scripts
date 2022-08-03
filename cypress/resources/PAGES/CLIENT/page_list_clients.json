@@ -1,0 +1,7 @@
+{
+    "EXISTING_CLIENT" : "tbody > :nth-child(1) > :nth-child(1)",
+    "SEARCH_INPUT": "input[placeholder*='name/mobile']",
+    "SEARCH_BTN": "span.fa-search",
+    "EXISTING_CLIENTS_SEARCH": "td[data-ng-click='routeTo(client.id)']",
+    "CREATE_CLIENT_BTN" : ".col-sm-4 > [href='#/createclient']"
+}

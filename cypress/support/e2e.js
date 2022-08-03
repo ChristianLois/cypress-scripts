@@ -17,6 +17,7 @@
 import './commands'
 import './AUTHENTICATION/command_login'
 import './GROUP/commands_group.js'
+import './CLIENT/command_client.js'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

@@ -6,6 +6,9 @@
     "DELETE_BTN" : "[data-ng-click='deleteClient()']",
     "DELETE_MODAL" : {
         "MODAL" : ".modal",
-        "CONFIRM_BTN" : ".modal-body > .btn-primary"
+        "CONFIRM_BTN" : ".modal-body > .btn-primary",
+        "ELEMENT_BTN" : "button",
+        "DELETE_LABEL" : "Delete",
+        "CONFIRM_LABEL" : "Confirm"
     }
 }
