@@ -13,6 +13,8 @@
     },
     "BUTTON_CLIENTS" : "[href=\"#/clients\"]",
     "BUTTON_GROUPS" : "a[href='#/groups']",
+    "DROPDOWN_MENU" : "[is-open='li.client.status.isopen'] > .dropdown-toggle",
+    "SWATCH_MENU" : "#swatch-menu",
     "DROPDOWN_MIFOS" : "#user-dropdown",
     "BUTTON_LOGOUT" : "#logout" 
 }

@@ -1,18 +1,16 @@
 // Author: Erru
 
 import { clientDetails } from '../../common.cy'
+import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json'
+import CREATE_CLIENT from "../../resources/PAGES/CLIENT/page_create_client.json";
+import VIEW_CLIENT from "../../resources/PAGES/CLIENT/page_view_client.json";
+import EXPECTED_CREATE_CLIENT from "../../data/EXPECTED/CLIENT/expected_create_client.json"
 
 describe('Create Client', { tags : '@client' } , function () { 
   // Setup
   beforeEach(function () {
-    cy.fixture('create_client').then((createClient) => {
-      this.createClient = createClient
-    })
-    cy.fixture('view_client').then((viewClient) => {
-      this.viewClient = viewClient
-    })
     cy.initPage()
-    cy.login('mifos','password')
+    cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD)
     cy.navigateToCreateClient()  
   })
   // Create Client Test Suite
@@ -24,73 +22,73 @@ describe('Create Client', { tags : '@client' } , function () {
 
     it('Creates Client With Valid Required Field', function () {
       cy.createClient(clientDetails.firstName, clientDetails.lastName)
-      cy.get(this.viewClient.TITLE_NAME).should('include.text', clientDetails.fullName)
-      cy.url().should('include', '/viewclient')
+      cy.get(VIEW_CLIENT.TITLE_NAME).should('include.text', clientDetails.fullName)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
     })
 
     it('Creates Client Optional Data', function () {
       cy.optionalDetails(clientDetails.firstName, clientDetails.middleName, clientDetails.lastName, 
                         clientDetails.mobileNo, clientDetails.birthDate)
-      cy.get(this.viewClient.TITLE_NAME).should('include.text', clientDetails.fullName)
-      cy.url().should('include', '/viewclient')
+      cy.get(VIEW_CLIENT.TITLE_NAME).should('include.text', clientDetails.fullName)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
     })
   })
 
   describe('Negative Path of Create Client', { tags : '@negative' } , function () {
     it('Creates Client With Integer in the Required Fields', function () {
       cy.createClient(clientDetails.randInteger, clientDetails.randInteger)
-      cy.url().should('include', '/createclient')
-      cy.get(this.createClient.INVALID.FIRSTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.INVALID_MESSAGE)
-        .and('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)  
-      cy.get(this.createClient.INVALID.LASTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.INVALID_MESSAGE)
-        .and('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.CREATE_CLIENT)
+      cy.get(CREATE_CLIENT.INVALID.FIRSTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.INVALID_MESSAGE)
+        .and('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)  
+      cy.get(CREATE_CLIENT.INVALID.LASTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.INVALID_MESSAGE)
+        .and('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
     })
 
     it('Creates Client Blank Credentials', function () {
-      cy.get(this.createClient.FORM.SUBMIT_BTN)
-      cy.url().should('include', '/createclient')
-      cy.get(this.createClient.INVALID.FIRSTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
-      cy.get(this.createClient.INVALID.LASTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
+      cy.get(CREATE_CLIENT.FORM.SUBMIT_BTN)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.CREATE_CLIENT)
+      cy.get(CREATE_CLIENT.INVALID.FIRSTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
+      cy.get(CREATE_CLIENT.INVALID.LASTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
     })
 
     it('Creates Client Maximum Characters', function () {
       cy.createClient(clientDetails.maxWords, clientDetails.maxWords)
-      cy.url().should('include', '/createclient')
-      cy.get(this.createClient.INVALID.FIRSTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
-      cy.get(this.createClient.INVALID.LASTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.CREATE_CLIENT)
+      cy.get(CREATE_CLIENT.INVALID.FIRSTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
+      cy.get(CREATE_CLIENT.INVALID.LASTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
     })
 
     it('Creates Client Invalid Optional Data', function () {
       cy.optionalDetails(clientDetails.randInteger, clientDetails.randInteger, clientDetails.randInteger, 
                         clientDetails.firstName, clientDetails.firstName)
-      cy.url().should('include', '/createclient')
-      cy.get(this.createClient.INVALID.FIRSTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.INVALID_MESSAGE)
-        .and('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)  
-      cy.get(this.createClient.INVALID.MIDDLENAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.INVALID_MESSAGE)
-      cy.get(this.createClient.INVALID.LASTNAME_ERROR)
-        .should('include.text', this.createClient.EXPECTED.INVALID_MESSAGE)
-        .and('include.text', this.createClient.EXPECTED.REQUIRED_FIELD)
-      cy.get(this.createClient.INVALID.MOBILENO_ERROR)
-        .should('include.text', this.createClient.EXPECTED.NUMERIC_MESSAGE)
+      cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.CREATE_CLIENT)
+      cy.get(CREATE_CLIENT.INVALID.FIRSTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.INVALID_MESSAGE)
+        .and('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)  
+      cy.get(CREATE_CLIENT.INVALID.MIDDLENAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.INVALID_MESSAGE)
+      cy.get(CREATE_CLIENT.INVALID.LASTNAME_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.INVALID_MESSAGE)
+        .and('include.text', EXPECTED_CREATE_CLIENT.REQUIRED_FIELD)
+      cy.get(CREATE_CLIENT.INVALID.MOBILENO_ERROR)
+        .should('include.text', EXPECTED_CREATE_CLIENT.NUMERIC_MESSAGE)
     })
 
     it('Creates Client Past Activation Date', function () {
-      cy.get(this.createClient.FORM.FIRSTNAME_INPUT).type(clientDetails.firstName, {delay: 0})
-      cy.get(this.createClient.FORM.LASTNAME_INPUT).type(clientDetails.lastName, {delay: 0})
-      cy.get(this.createClient.FORM.ACTIVE_CHECKBOX).check()
-      cy.get(this.createClient.FORM.ACTIVATION_DATE).clear()
+      cy.get(CREATE_CLIENT.FORM.FIRSTNAME_INPUT).type(clientDetails.firstName, {delay: 0})
+      cy.get(CREATE_CLIENT.FORM.LASTNAME_INPUT).type(clientDetails.lastName, {delay: 0})
+      cy.get(CREATE_CLIENT.FORM.ACTIVE_CHECKBOX).check()
+      cy.get(CREATE_CLIENT.FORM.ACTIVATION_DATE).clear()
         .type(clientDetails.pastActivationDate)
-      cy.get(this.createClient.FORM.SUBMIT_BTN).click()
-      cy.get(this.createClient.INVALID.ERRORS.PAST_ACTIVATION_DATE)
-        .should('include.text', this.createClient.EXPECTED.ACTIVATION_DATE_MESSAGE)
+      cy.get(CREATE_CLIENT.FORM.SUBMIT_BTN).click()
+      cy.get(CREATE_CLIENT.INVALID.ERRORS.PAST_ACTIVATION_DATE)
+        .should('include.text', EXPECTED_CREATE_CLIENT.ACTIVATION_DATE_MESSAGE)
     })
   })
 })
