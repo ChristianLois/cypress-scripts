@@ -13,7 +13,7 @@ describe('Valid Create Group', function (){
     })
 
 
-    it('Create Group',{tags:['regression', 'happy_path']},  function(){
+    it('Create Group',{tags:['smoke test','create group-positive test']},  function(){
         cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
         .click()
 
@@ -36,7 +36,7 @@ describe('Valid Create Group', function (){
         cy.delete_group()
     })
 
-    it('Create Group No Office Specified',{tags:['regression', 'negative']},  function(){
+    it('Create Group No Office Specified',{tags:['smoke test','create group-negative test']},  function(){
 
         cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
           .click()
@@ -45,7 +45,7 @@ describe('Valid Create Group', function (){
         cy.contains(EXPECTED_CREATE_GROUP.INVALID.MESSAGE_OFFICE_MANDATORY)
     })
     
-      it('Create Group No Group Name', {tags:['regression', 'negative']}, function(){
+      it('Create Group No Group Name', {tags:['smoke test','create group-negative test']}, function(){
         cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
           .click()
     
