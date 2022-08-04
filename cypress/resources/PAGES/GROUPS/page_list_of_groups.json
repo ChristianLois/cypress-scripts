@@ -4,6 +4,8 @@
         "TEXTFIELD_NAME": "#name",
         "DROPDOWN_OFFICE": "div#officeId_chosen span",
         "TEXTFIELD_OFFICE": "div#officeId_chosen input",
+        "TEXTFIELD_EXTERNAL_ID": "#externalId",
+        "TEXTFIELD_SUBMITTED_ON": "#submittedon",
         "BTN_SAVE": "#save"
     },
     "TEXTFIELD_MIDDLE_SEARCH_GROUP": "input[placeholder='Find by name/externalId']",

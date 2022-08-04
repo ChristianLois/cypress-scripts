@@ -50,7 +50,7 @@ Cypress.Commands.add('create_group_with_external_id', (company_name, office, id)
   .type(office)
   .type('{enter}',{delay: 0})
 
-  cy.get('#externalId')
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_EXTERNAL_ID)
   .type(id,{delay: 0} )
 
   cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.BTN_SAVE)
@@ -68,7 +68,7 @@ Cypress.Commands.add('create_group_with_submitted_date', (company_name, office, 
   .type(office)
   .type('{enter}',{delay: 0})
 
-  cy.get('#submittedon')
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_SUBMITTED_ON)
   .clear()
   .type(date,{delay: 0} )
 
