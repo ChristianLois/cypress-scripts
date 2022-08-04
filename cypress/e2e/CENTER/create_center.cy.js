@@ -7,9 +7,10 @@ import INPUT_LOGIN from "../../data/INPUTS/AUTHENTICATION/input_login.json";
 import CENTER from "../../resources/PAGES/CENTER/page_center.json";
 import EXPECTED_CENTER from "../../data/EXPECTED/CREATE_CENTER/expected_create_center.json";
 import COMPONENT_CENTER from "../../resources/COMPONENTS/CENTER/component_center.json";
-import { centerName } from "../../common.cy";
+import { generateCenterDetails } from "../../common.cy";
 
 describe("create a center", () => {
+  const centerName = generateCenterDetails();
   // Setup
   beforeEach(() => {
     cy.initPage();
@@ -38,7 +39,7 @@ describe("create a center", () => {
     () => {
       cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
         "contain.text",
-        "Welcome, mifos"
+        EXPECTED_LOGIN.VALID.TEXT_WELCOME
       );
       cy.wait(1000);
       cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
@@ -70,7 +71,7 @@ describe("create a center", () => {
     () => {
       cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
         "contain.text",
-        "Welcome, mifos"
+        EXPECTED_LOGIN.VALID.TEXT_WELCOME
       );
       cy.wait(1000);
       cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
