@@ -25,7 +25,7 @@ Cypress.Commands.add('createClient', (firstName, lastName) => {
     cy.get(PAGE_CREATE_CLIENT.FORM.SUBMIT_BTN).click()
 })
 
-Cypress.Commands.add('optionalDetails', (firstName, lastName, middleName, mobileNo, birthDate) => {
+Cypress.Commands.add('optionalDetails', (firstName, middleName, lastName, mobileNo, birthDate) => {
     cy.get(PAGE_CREATE_CLIENT.FORM.FIRSTNAME_INPUT).type(firstName, {delay: 0})
     cy.get(PAGE_CREATE_CLIENT.FORM.MIDDLENAME_INPUT).type(middleName, {delay: 0})
     cy.get(PAGE_CREATE_CLIENT.FORM.LASTNAME_INPUT).type(lastName, {delay: 0})
