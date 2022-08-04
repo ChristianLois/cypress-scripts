@@ -5,3 +5,4 @@ cypress/downloads
 cypress/.DS_Store
 package-lock.json
 package.json
+mochawesome-report/
