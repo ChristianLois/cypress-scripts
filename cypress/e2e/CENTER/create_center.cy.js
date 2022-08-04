@@ -5,7 +5,7 @@ import PAGE_LOGIN from "../../resources/PAGES/AUTHENTICATION/page_login.json";
 import EXPECTED_LOGIN from "../../data/EXPECTED/AUTHENTICATION/expected_login.json";
 import INPUT_LOGIN from "../../data/INPUTS/AUTHENTICATION/input_login.json";
 import CENTER from "../../resources/PAGES/CENTER/page_center.json";
-import EXPECTED_CENTER from "../../data/CENTER/CREATE_CENTER/expected_create_center.json";
+import EXPECTED_CENTER from "../../data/EXPECTED/CREATE_CENTER/expected_create_center.json";
 import COMPONENT_CENTER from "../../resources/COMPONENTS/CENTER/component_center.json";
 import { centerName } from "../../common.cy";
 
@@ -20,7 +20,7 @@ describe("create a center", () => {
       "contain.text",
       EXPECTED_LOGIN.VALID.TEXT_WELCOME
     );
-    // Teardown
+  // Teardown
   });
   afterEach(() => {
     cy.get(COMPONENT_HEADER.DROPDOWN_MIFOS).trigger("mouseover");
@@ -32,9 +32,7 @@ describe("create a center", () => {
     {
       tags: [
         "smoke_test",
-        "create_a_center_Test_Case",
-        "regression",
-        "happy_path",
+        "create_a_center_positive_test",
       ],
     },
     () => {

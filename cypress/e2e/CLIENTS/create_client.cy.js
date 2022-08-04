@@ -14,7 +14,7 @@ describe('Create Client', { tags : '@client' } , function () {
     cy.navigateToCreateClient()  
   })
   // Create Client Test Suite
-  describe('Create Client', { tags : '@happy_path' } , function () {
+  describe('Create Client', {tags: ['smoke_test', 'positive_test']} , function () {
     // Teardown
     afterEach(function () {
       cy.deleteClient(clientDetails.fullName)
@@ -34,7 +34,7 @@ describe('Create Client', { tags : '@client' } , function () {
     })
   })
 
-  describe('Negative Path of Create Client', { tags : '@negative' } , function () {
+  describe('Negative Path of Create Client', {tags: ['smoke_test','create_client_negative_test']} , function () {
     it('Creates Client With Integer in the Required Fields', function () {
       cy.createClient(clientDetails.randInteger, clientDetails.randInteger)
       cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.CREATE_CLIENT)
