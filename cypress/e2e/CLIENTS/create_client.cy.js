@@ -1,11 +1,11 @@
 // Author: Erru
 
 import { generateClientDetails } from '../../common.cy'
+import { inputs_date } from '../../data/INPUTS/CLIENT/input_date_create_client.js'
 import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json'
 import CREATE_CLIENT from "../../resources/PAGES/CLIENT/page_create_client.json";
 import VIEW_CLIENT from "../../resources/PAGES/CLIENT/page_view_client.json";
 import EXPECTED_CREATE_CLIENT from "../../data/EXPECTED/CLIENT/expected_create_client.json"
-
 
 describe('Create Client', { tags : '@client' } , function () { 
   var clientDetails;
@@ -103,29 +103,25 @@ describe('Create Client', { tags : '@client' } , function () {
   })
 })
 
+//Author: Vince
 //series of data - static version
-describe('Create Client Series of Data Birthday', () => {
-
-  const fixtures = [
-    {date: new Date("10 June 2000"),testname:"Create Client Birthday Before Current Date", input_date: "10 June 2000"},
-    {date: new Date("04 August 2022"),testname:"Create Client Birthday On Current Date", input_date: "04 August 2022"},
-    {date: new Date("25 December 2022"),testname:"Create Client Birthday After Current Date", input_date: "25 December 2022"}
-  ]
-  
+describe('Create Client Series of Data Birthday', () => {  
   const currentDate = new Date();
 
-  fixtures.forEach(fixture => {
-    describe("Creating a Client with Birthday From " + fixture.input_date, () => {
+  inputs_date.forEach(input => {
+    describe("Creating a Client with Birthday From " + input.input_date, () => {
+      var clientDetails;
       before(function () {
         cy.initPage()
         cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD)
         cy.navigateToCreateClient()  
       })
-      it(fixture.testname, function(){
+      it(input.testname, function(){
+        clientDetails = generateClientDetails(false);
         cy.optionalDetails(clientDetails.firstName, clientDetails.middleName, clientDetails.lastName, 
-          clientDetails.mobileNo, fixture.input_date)
+          clientDetails.mobileNo, input.input_date)
 
-        if(fixture.date <= currentDate){
+        if(input.date <= currentDate){
           cy.get(VIEW_CLIENT.TITLE_NAME).should('include.text', clientDetails.fullName)
           cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
           cy.deleteClient(clientDetails.fullName)
