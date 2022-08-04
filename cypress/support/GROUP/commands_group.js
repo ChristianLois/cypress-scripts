@@ -38,3 +38,21 @@ import SELECTORS_HEADER from '../../RESOURCES/COMPONENTS/HEADER/component_header
     .get(SELECTORS_HEADER.BUTTON_GROUPS)
     .click()
 })
+
+Cypress.Commands.add('create_group_with_external_id', (company_name, office, id) => {
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_NAME)
+  .type(company_name,{delay: 0})
+
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.DROPDOWN_OFFICE)
+  .click()
+  
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_OFFICE)
+  .type(office)
+  .type('{enter}',{delay: 0})
+
+  cy.get('#externalId')
+  .type(id,{delay: 0} )
+
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.BTN_SAVE)
+  .click()
+})

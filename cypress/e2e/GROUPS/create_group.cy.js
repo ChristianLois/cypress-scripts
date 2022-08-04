@@ -1,9 +1,10 @@
 import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json';
 import SELECTORS_LIST_GROUPS from '../../resources/pages/groups/page_list_of_groups.json'
 import EXPECTED_CREATE_GROUP from '../../data/expected/group/expected_create_group.json'
+import SELECTORS_GROUP_PROFILE from '../../resources/pages/groups/page_group_profile.json'
 import {faker} from '@faker-js/faker'
 
-const [company_name, office] = [faker.company.companyName(), 'Head Office']
+const [company_name, office, id] = [faker.company.companyName(), 'Head Office', String(faker.phone.number('0000#####'))]
 
 describe('Valid Create Group', function (){
     beforeEach(() => {
@@ -13,20 +14,16 @@ describe('Valid Create Group', function (){
     })
 
 
-    it('Create Group',{tags:['smoke test','create group-positive test']},  function(){
+    it('Create Group Required Fields',{tags:['smoke test','create group-positive test']},  function(){
         cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
         .click()
-
         cy.create_group(company_name, office)
-
         cy.url()
         .should('include',EXPECTED_CREATE_GROUP.VALID.URL)
-        
-          //Assertion
-        cy.contains('Activate')
-        cy.contains('Edit')
-        cy.contains('More')
-
+        //Assertion
+        cy.contains(SELECTORS_GROUP_PROFILE.TEXT_ACTIVATE)
+        cy.contains(SELECTORS_GROUP_PROFILE.TEXT_EDIT)
+        cy.contains(SELECTORS_GROUP_PROFILE.TEXT_MORE)
         //delete group 
         cy.go_to_list_of_groups()
         cy.search_group(company_name)
@@ -35,6 +32,48 @@ describe('Valid Create Group', function (){
         .click()
         cy.delete_group()
     })
+    //THIS TEST CASE SHOWS AN ERROR SINCE IT IS NOT POSSIBLE TO CLOSE THE GROUP AFTER ITS ACTIVATION
+    /*
+    it('Create Group with Activation Date',{tags:['smoke test','create group-positive test']},  function(){
+      cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
+      .click()
+      cy.create_group_with_activation_date(company_name, office)
+      cy.url()
+      .should('include',EXPECTED_CREATE_GROUP.VALID.URL)
+      //Assertion
+      cy.contains('Activation Date')
+      cy.contains('Edit')
+      cy.contains('More')
+
+      //delete group 
+      cy.go_to_list_of_groups()
+      cy.search_group(company_name)
+      cy.get(SELECTORS_LIST_GROUPS.FIRST_GROUP_IN_LIST)
+      .should('have.text', company_name)
+      .click()
+      cy.delete_group()
+  })
+  */
+  it('Create Group with External Id',{tags:['smoke test','create group-positive test']},  function(){
+    cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
+    .click()
+    cy.create_group_with_external_id(company_name, office, id)
+    cy.url()
+    .should('include',EXPECTED_CREATE_GROUP.VALID.URL)
+    //Assertion
+    cy.contains(SELECTORS_GROUP_PROFILE.TEXT_ACTIVATE)
+    cy.contains(SELECTORS_GROUP_PROFILE.TEXT_EDIT)
+    cy.contains(SELECTORS_GROUP_PROFILE.TEXT_MORE)
+    cy.contains(id)
+    //delete group 
+    cy.go_to_list_of_groups()
+    cy.search_group(company_name)
+    cy.get(SELECTORS_LIST_GROUPS.FIRST_GROUP_IN_LIST)
+    .should('have.text', company_name)
+    .click()
+    cy.delete_group()
+})
+  
 
     it('Create Group No Office Specified',{tags:['smoke test','create group-negative test']},  function(){
 
