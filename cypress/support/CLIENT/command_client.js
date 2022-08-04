@@ -39,3 +39,11 @@ Cypress.Commands.add('navigateToCreateClient', () => {
     cy.get(COMPONENT_HEADER.SWATCH_MENU).contains(COMPONENT_HEADER.DROPDOWN_CLIENTS.TEXT_CLIENTS).click()
     cy.get(PAGE_LIST_CLIENTS.CREATE_CLIENT_BTN).click()
 })
+
+// Author: Mark Anthony
+Cypress.Commands.add('edit_client', ( firstName, lastName) => {
+    cy.get(PAGE_VIEW_CLIENT.EDIT_BTN).click()
+    cy.get(PAGE_CREATE_CLIENT.FORM.FIRSTNAME_INPUT).clear().type(firstName, {delay: 0})
+    cy.get(PAGE_CREATE_CLIENT.FORM.LASTNAME_INPUT).clear().type(lastName, {delay: 0})
+    cy.get(PAGE_CREATE_CLIENT.FORM.SUBMIT_BTN).click()
+})
