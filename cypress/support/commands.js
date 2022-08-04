@@ -39,22 +39,3 @@ Cypress.Commands.add('login', (username,password)=>{
 
     cy.contains('Sign In').click();
 });
-
-// Author: Mark Anthony
-Cypress.Commands.add('edit_client', (type, firstName, lastName) => {
-    if (type == 'valid'){
-        cy.get('[href^="#/editclient"]').click()
-        cy.get('#firstname').clear().type(firstName)
-        cy.get('#lastname').clear().type(lastName)
-        cy.get('#save').click()
-    }
-
-    else if (type == 'blank'){
-        cy.get('[href^="#/editclient"]').click()
-        cy.get('#firstname').clear()
-        cy.get('#lastname').clear()
-        cy.get('#save').click()
-    }
-})
-
-//Author: Vince 
