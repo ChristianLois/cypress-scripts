@@ -14,7 +14,7 @@ describe('Valid Create Group', function (){
     })
 
 
-    it('Create Group Required Fields',{tags:['smoke test','create group-positive test']},  function(){
+    it('Create Group Required Fields',{tags:['smoke_test','create_group_positive_test']},  function(){
         cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
         .click()
         cy.create_group(company_name, office)
