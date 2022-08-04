@@ -7,7 +7,7 @@ describe('Login', () => {
   beforeEach(()=>{
     cy.initPage();
   });
-  it('Logs in with valid credentials', () => {
+  it('Logs in with valid credentials', {tags: ['smoke_test','login_positive_test']}, () => {
 
     cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD);
 
@@ -15,7 +15,7 @@ describe('Login', () => {
     cy.get(PAGE_HOME.TEXT_WELCOME).should('contain.text', EXPECTED_LOGIN.VALID.TEXT_WELCOME);
   });
 
-  it('Logs in with blank username', () => {
+  it('Logs in with blank username', {tags: ['smoke_test','login_negative_test']}, () => {
 
     cy.login(' ',INPUT_LOGIN.VALID.PASSWORD);
 
@@ -23,7 +23,7 @@ describe('Login', () => {
     cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
-  it('Logs in with invalid username', () => {
+  it('Logs in with invalid username', {tags: ['smoke_test','login_negative_test']}, () => {
 
     cy.login(INPUT_LOGIN.INVALID.USERNAME,INPUT_LOGIN.VALID.PASSWORD);
 
@@ -31,7 +31,7 @@ describe('Login', () => {
     cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
-  it('Logs in with blank password', () => {
+  it('Logs in with blank password', {tags: ['smoke_test','login_negative_test']}, () => {
 
     cy.login(INPUT_LOGIN.VALID.USERNAME,' ');
 
@@ -39,7 +39,7 @@ describe('Login', () => {
     cy.get(PAGE_LOGIN.TEXT_INVALID_LOGIN).should('be.visible');
   });
 
-  it('Logs in with invalid password', () => {
+  it('Logs in with invalid password', {tags: ['smoke_test','login_negative_test']}, () => {
 
     cy.login(INPUT_LOGIN.VALID.USERNAME,INPUT_LOGIN.INVALID.PASSWORD);
 

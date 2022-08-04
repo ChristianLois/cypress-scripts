@@ -8,7 +8,7 @@ describe('Logout', ()=>{
         cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD);
       })
 
-    it('Logs out the user', ()=>{
+    it('Logs out the user', {tags: ['smoke_test','logout_positive_test']},()=>{
         cy.get(COMPONENT_HEADER.DROPDOWN_MIFOS).trigger('mouseover');
         cy.get(COMPONENT_HEADER.BUTTON_LOGOUT).click();
         cy.get(PAGE_LOGIN.TEXTFIELD_USERNAME).should('be.visible');

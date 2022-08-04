@@ -5,14 +5,18 @@ import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json'
 import VIEW_CLIENT from "../../resources/PAGES/CLIENT/page_view_client.json";
 import EXPECTED_CREATE_CLIENT from "../../data/EXPECTED/CLIENT/expected_create_client.json"
 
-describe('Edit Client Test Case', () => {
+describe('Edit Client', () => {
 
     beforeEach(() => {
       cy.initPage()
       cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD)
     })
 
-    it('Edit Client with valid Data', {tags: ['smoke_test','Edit Client Test Case','regression', 'happy_path']}, () => {
+    afterEach(() => {
+      cy.deleteClient(clientDetails.fullName)
+    })
+
+    it('Edit Client with valid Data', {tags: ['smoke_test','edit_client_positive_test']}, () => {
       //Create New Client
       cy.navigateToCreateClient()
       cy.createClient(clientDetails.firstName,clientDetails.lastName)
@@ -26,11 +30,10 @@ describe('Edit Client Test Case', () => {
       cy.get(VIEW_CLIENT.TITLE_NAME).contains(clientDetails.firstName + " " + clientDetails.lastName)
       cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
       
-      //Delete Client
-      cy.deleteClient(clientDetails.fullName)
+      
     })
 
-    it('Edit Client with blank names', {tags: ['smoke_test','Edit Client Test Case','regression', 'negative_path']}, () => {
+    it('Edit Client with blank names', {tags: ['smoke_test','edit_client_negative_test']}, () => {
       //Create New Client
       cy.navigateToCreateClient()
       cy.createClient(clientDetails.firstName,clientDetails.lastName)
