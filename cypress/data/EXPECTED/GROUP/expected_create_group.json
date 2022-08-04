@@ -5,6 +5,7 @@
     "INVALID": {
         "MESSAGE_NAME_MANDATORY": "Name is mandatory. -",
         "MESSAGE_OFFICE_MANDATORY": "Office is mandatory. -",
-        "URL": "#/creategroup"
+        "URL": "#/creategroup",
+        "MESSAGE_SUBMITTED_DATE": "Submitted Date cannot be greater than the current date"
     }
 }

@@ -99,6 +99,7 @@ describe('Valid Create Group', function (){
   
       cy.create_group_with_submitted_date(company_name, office, date)
       //Assertion
+      cy.contains(EXPECTED_CREATE_GROUP.INVALID.MESSAGE_SUBMITTED_DATE)
       cy.url()
       .should('include',EXPECTED_CREATE_GROUP.INVALID.URL)
   })
