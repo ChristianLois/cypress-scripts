@@ -27,39 +27,64 @@ describe("create a center", () => {
     cy.get(COMPONENT_HEADER.BUTTON_LOGOUT).click();
     cy.get(PAGE_LOGIN.TEXTFIELD_USERNAME).should("be.visible");
   });
-  it("create a center", { tags: ["@happy_path"] }, () => {
-    cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
-      "contain.text",
-      "Welcome, mifos"
-    );
-    cy.wait(1000);
-    cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
-    cy.get(CENTER.CREATE_CENTER.TEXTFIELD_CENTER_NAME).type(centerName);
-    cy.get(CENTER.CREATE_CENTER.SUBMIT_BTN).click();
-    //assertion
-    cy.url().should("include", EXPECTED_CENTER.VALID_CENTER_CREATION.PATH_URL);
-    cy.contains("Summary");
+  it(
+    "create a center",
+    {
+      tags: [
+        "smoke_test",
+        "create_a_center_Test_Case",
+        "regression",
+        "happy_path",
+      ],
+    },
+    () => {
+      cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
+        "contain.text",
+        "Welcome, mifos"
+      );
+      cy.wait(1000);
+      cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
+      cy.get(CENTER.CREATE_CENTER.TEXTFIELD_CENTER_NAME).type(centerName);
+      cy.get(CENTER.CREATE_CENTER.SUBMIT_BTN).click();
+      //assertion
+      cy.url().should(
+        "include",
+        EXPECTED_CENTER.VALID_CENTER_CREATION.PATH_URL
+      );
+      cy.contains("Summary");
 
-    //Delete Center
-    cy.get(CENTER.DELETE_CENTER.DROPDOWN_BTN).click();
-    cy.get(CENTER.DELETE_CENTER.DELETE_BTN).click();
-    cy.get(CENTER.DELETE_CENTER.CONFIRM_BTN).click();
-  });
-  it("create an invalid center", { tags: ["@negative"] }, () => {
-    cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
-      "contain.text",
-      "Welcome, mifos"
-    );
-    cy.wait(1000);
-    cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
-    cy.get(CENTER.CREATE_CENTER.TEXTFIELD_CENTER_NAME).type(" ");
-    cy.get(CENTER.CREATE_CENTER.SUBMIT_BTN).click();
+      //Delete Center
+      cy.get(CENTER.DELETE_CENTER.DROPDOWN_BTN).click();
+      cy.get(CENTER.DELETE_CENTER.DELETE_BTN).click();
+      cy.get(CENTER.DELETE_CENTER.CONFIRM_BTN).click();
+    }
+  );
+  it(
+    "create an invalid center",
+    {
+      tags: [
+        "smoke_test",
+        "create_an_invalid_center",
+        "regression",
+        "negative",
+      ],
+    },
+    () => {
+      cy.get(EXPECTED_CENTER.VALID_CENTER_CREATION.HEADER_TEXT).should(
+        "contain.text",
+        "Welcome, mifos"
+      );
+      cy.wait(1000);
+      cy.get(COMPONENT_CENTER.NAVBAR_CENTER_BUTTON).click();
+      cy.get(CENTER.CREATE_CENTER.TEXTFIELD_CENTER_NAME).type(" ");
+      cy.get(CENTER.CREATE_CENTER.SUBMIT_BTN).click();
 
-    //assertion
-    cy.url().should(
-      "include",
-      EXPECTED_CENTER.INVALID_CENTER_CREATION.PATH_URL
-    );
-    cy.contains("Required Field");
-  });
+      //assertion
+      cy.url().should(
+        "include",
+        EXPECTED_CENTER.INVALID_CENTER_CREATION.PATH_URL
+      );
+      cy.contains("Required Field");
+    }
+  );
 });
