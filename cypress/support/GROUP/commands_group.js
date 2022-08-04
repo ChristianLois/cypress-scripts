@@ -56,3 +56,22 @@ Cypress.Commands.add('create_group_with_external_id', (company_name, office, id)
   cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.BTN_SAVE)
   .click()
 })
+
+Cypress.Commands.add('create_group_with_submitted_date', (company_name, office, date) => {
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_NAME)
+  .type(company_name,{delay: 0})
+
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.DROPDOWN_OFFICE)
+  .click()
+  
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.TEXTFIELD_OFFICE)
+  .type(office)
+  .type('{enter}',{delay: 0})
+
+  cy.get('#submittedon')
+  .clear()
+  .type(date,{delay: 0} )
+
+  cy.get(SELECTORS_LIST_GROUPS.MODAL_CREATE_GROUP.BTN_SAVE)
+  .click()
+})

@@ -4,6 +4,7 @@
     },
     "INVALID": {
         "MESSAGE_NAME_MANDATORY": "Name is mandatory. -",
-        "MESSAGE_OFFICE_MANDATORY": "Office is mandatory. -"
+        "MESSAGE_OFFICE_MANDATORY": "Office is mandatory. -",
+        "URL": "#/creategroup"
     }
 }

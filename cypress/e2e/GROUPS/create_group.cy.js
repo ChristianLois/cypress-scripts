@@ -4,7 +4,7 @@ import EXPECTED_CREATE_GROUP from '../../data/expected/group/expected_create_gro
 import SELECTORS_GROUP_PROFILE from '../../resources/pages/groups/page_group_profile.json'
 import {faker} from '@faker-js/faker'
 
-const [company_name, office, id] = [faker.company.companyName(), 'Head Office', String(faker.phone.number('0000#####'))]
+const [company_name, office, id, date] = [faker.company.companyName(), 'Head Office', String(faker.phone.number('0000#####')), String(faker.date.future())]
 
 describe('Valid Create Group', function (){
     beforeEach(() => {
@@ -92,6 +92,18 @@ describe('Valid Create Group', function (){
         //Assertion
         cy.contains(EXPECTED_CREATE_GROUP.INVALID.MESSAGE_NAME_MANDATORY)
     })
+
+    it('Create Group with Submitted Date Greater than Current Date', {tags:['smoke test','create group-negative test']}, function(){
+      cy.get(SELECTORS_LIST_GROUPS.BTN_CREATE_GROUP)
+        .click()
+  
+      cy.create_group_with_submitted_date(company_name, office, date)
+      //Assertion
+      cy.url()
+      .should('include',EXPECTED_CREATE_GROUP.INVALID.URL)
+  })
+
+
 })
 
 
