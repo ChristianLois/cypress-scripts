@@ -1,12 +1,11 @@
 // Author: Erru
-
-import { generateClientDetails } from '../../common.cy'
 import { inputs_date } from '../../data/INPUTS/CLIENT/input_date_create_client.js'
 import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json'
 import CREATE_CLIENT from "../../resources/PAGES/CLIENT/page_create_client.json";
 import VIEW_CLIENT from "../../resources/PAGES/CLIENT/page_view_client.json";
 import EXPECTED_CREATE_CLIENT from "../../data/EXPECTED/CLIENT/expected_create_client.json"
-/*
+import { generateClientDetails } from '../../common.cy'
+
 describe('Create Client', { tags : '@client' } , function () { 
   var clientDetails;
 
@@ -102,7 +101,7 @@ describe('Create Client', { tags : '@client' } , function () {
     })
   })
 })
-*/
+
 //Author: Vince
 //series of data - static version
 describe('Create Client Series of Data Birthday', () => {  
