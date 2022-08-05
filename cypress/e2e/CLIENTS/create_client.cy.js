@@ -1,11 +1,10 @@
 // Author: Erru
-
-import { generateClientDetails } from '../../common.cy'
 import { inputs_date } from '../../data/INPUTS/CLIENT/input_date_create_client.js'
 import INPUT_LOGIN from '../../data/INPUTS/AUTHENTICATION/input_login.json'
 import CREATE_CLIENT from "../../resources/PAGES/CLIENT/page_create_client.json";
 import VIEW_CLIENT from "../../resources/PAGES/CLIENT/page_view_client.json";
 import EXPECTED_CREATE_CLIENT from "../../data/EXPECTED/CLIENT/expected_create_client.json"
+import { generateClientDetails } from '../../common.cy'
 
 describe('Create Client', { tags : '@client' } , function () { 
   var clientDetails;
@@ -116,18 +115,22 @@ describe('Create Client Series of Data Birthday', () => {
         cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD)
         cy.navigateToCreateClient()  
       })
+
+      after(function () {
+        cy.deleteClient(clientDetails.fullName)
+      })
       it(input.testname, function(){
         clientDetails = generateClientDetails(false);
         cy.optionalDetails(clientDetails.firstName, clientDetails.middleName, clientDetails.lastName, 
           clientDetails.mobileNo, input.input_date)
 
-        if(input.date <= currentDate){
+        //if(input.date <= currentDate){
           cy.get(VIEW_CLIENT.TITLE_NAME).should('include.text', clientDetails.fullName)
           cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
-          cy.deleteClient(clientDetails.fullName)
-        }else{
-          cy.contains("validation.msg.client.dateOfBirth.is.greater.than.date - ")
-        }
+          //cy.deleteClient(clientDetails.fullName)
+        //}else{
+        //  cy.contains("validation.msg.client.dateOfBirth.is.greater.than.date - ")
+        //}
       })
 
     })
