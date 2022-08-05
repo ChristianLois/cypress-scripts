@@ -30,7 +30,8 @@ export function generateClientDetails (hasMiddle, {minDate = 1900, maxDate = 200
     edittedLastName: faker.name.lastName(),
     pastActivationDate : String(faker.date.past(activate)),
     centerName : faker.company.catchPhraseAdjective(),
-    groupName: faker.commerce.department()
+    groupName: faker.commerce.department() + " " + Date.now(),
+    externalId: String(faker.phone.number('0000#####'))
   }
   return clientDetails;
 }
