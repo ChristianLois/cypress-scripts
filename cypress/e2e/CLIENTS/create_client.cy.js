@@ -116,18 +116,22 @@ describe('Create Client Series of Data Birthday', () => {
         cy.login(INPUT_LOGIN.VALID.USERNAME, INPUT_LOGIN.VALID.PASSWORD)
         cy.navigateToCreateClient()  
       })
+
+      after(function () {
+        cy.deleteClient(clientDetails.fullName)
+      })
       it(input.testname, function(){
         clientDetails = generateClientDetails(false);
         cy.optionalDetails(clientDetails.firstName, clientDetails.middleName, clientDetails.lastName, 
           clientDetails.mobileNo, input.input_date)
 
-        if(input.date <= currentDate){
+        //if(input.date <= currentDate){
           cy.get(VIEW_CLIENT.TITLE_NAME).should('include.text', clientDetails.fullName)
           cy.url().should('include', EXPECTED_CREATE_CLIENT.URLS.VIEW_CLIENT)
-          cy.deleteClient(clientDetails.fullName)
-        }else{
-          cy.contains("validation.msg.client.dateOfBirth.is.greater.than.date - ")
-        }
+          //cy.deleteClient(clientDetails.fullName)
+        //}else{
+        //  cy.contains("validation.msg.client.dateOfBirth.is.greater.than.date - ")
+        //}
       })
 
     })
